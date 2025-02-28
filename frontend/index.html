@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend conectado al Backend</title>
+</head>
+<body>
+    <h1>Frontend conectado al Backend</h1>
+    <p id="mensaje">Cargando mensaje...</p>
+
+    <script>
+        // Hacer una petición al backend en Express
+        fetch("http://localhost:3000/api/mensaje")
+            .then(response => response.json()) // Convertir la respuesta a JSON
+            .then(data => {
+                document.getElementById("mensaje").innerText = data.mensaje; // Mostrar el mensaje en la página
+            })
+            .catch(error => console.error("Error:", error)); // Capturar errores
+    </script>
+</body>
+</html>
