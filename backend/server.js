@@ -8,12 +8,14 @@ const PORT = process.env.PORT || 3000;
 
 // Configuración de la base de datos PostgreSQL en AWS RDS
 const pool = new Pool({
-    user: 'postgres',  // Usuario de la base de datos
-    host: 'disney.cnanbt27k03l.us-east-1.rds.amazonaws.com',  // Endpoint de tu RDS
-    database: 'postgres',  // Nombre de la base de datos
-    password: 'Ganadores2025',  // Contraseña de PostgreSQL
-    port: 5432
+  user: 'postgres',  
+  host: 'database-1.xxxxxx.us-east-1.rds.amazonaws.com',  
+  database: 'postgres',  
+  password: 'tu_contraseña',  
+  port: 5432,
+  ssl: { rejectUnauthorized: false }  // Esto permite conexiones seguras
 });
+
 
 // Verificar conexión a la base de datos
 pool.connect()
