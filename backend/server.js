@@ -6,21 +6,23 @@ const { Pool } = require('pg');  // Importamos Pool para conectarnos a PostgreSQ
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Configuración de la base de datos PostgreSQL en AWS RDS
+require('dotenv').config(); // Cargar variables de entorno
+
+const { Pool } = require("pg");
+
 const pool = new Pool({
-  user: 'postgres',  
-  host: 'disney.cnanbt27k03l.us-east-1.rds.amazonaws.com',  
-  database: 'postgres',  
-  password: 'Ganadores2025',  
-  port: 5432,
-  ssl: { rejectUnauthorized: false }  // Esto permite conexiones seguras
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
+  ssl: { rejectUnauthorized: false } // Para permitir conexiones seguras
 });
 
-
-// Verificar conexión a la base de datos
 pool.connect()
-    .then(() => console.log("✅ Conectado a PostgreSQL en AWS RDS"))
-    .catch(err => console.error("❌ Error de conexión:", err));
+  .then(() => console.log("✅ Conexión exitosa a la base de datos"))
+  .catch(err => console.error("❌ Error al conectar con la base de datos:", err));
+    
 
 app.use(cors());
 app.use(express.json());
